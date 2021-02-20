@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";   //??  в каждом файле импортировать?
+import { useState, useCallback, useEffect, useRef } from "react";
 
 function MessageItem(props) {
     return (
@@ -27,13 +27,19 @@ function MessageField() {
     }, [messageArr]);
 
     useEffect(() => {
-        messFieldEl.current.scrollTop = messFieldEl.current.scrollHeight;
+        if (messFieldEl) {
+            messFieldEl.current.scrollTop = messFieldEl.current.scrollHeight;
+        }
+    }, [messageArr]);
+
+    const renderMessage = useCallback((message) => {
+        return (<MessageItem text={message} />);
     }, [messageArr]);
 
     return (
         <div className="app__field">
             <div ref={messFieldEl} className="message__field">
-                {messageArr.map(message => <MessageItem text={message} />)}
+                {messageArr.map(renderMessage)}
             </div>
             <form className="sendMess__form" onSubmit={addMessage}>
                 <label htmlFor="message__input">INPUT:</label>
