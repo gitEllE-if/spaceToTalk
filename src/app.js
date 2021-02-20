@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";   //??  в каждом файле импортировать?
+import { useState, useCallback, useEffect, useRef } from "react";   //??  в каждом файле импортировать?
 
 function MessageItem(props) {
     return (
@@ -10,6 +10,7 @@ let Arr = ['Привет', 'Как дела?'];
 
 function MessageField() {
     const [messageArr, setMessageArr] = useState(Arr);
+    const messFieldEl = useRef();
 
     const addMessage = useCallback((event) => {
         event.preventDefault();
@@ -26,13 +27,12 @@ function MessageField() {
     }, [messageArr]);
 
     useEffect(() => {
-        const messFieldEl = document.getElementsByClassName('message__field')[0];  //?? TODO: обратиться к элементу средствами реакта
-        messFieldEl.scrollTop = messFieldEl.scrollHeight;
+        messFieldEl.current.scrollTop = messFieldEl.current.scrollHeight;
     }, [messageArr]);
 
     return (
         <div className="app__field">
-            <div className="message__field">
+            <div ref={messFieldEl} className="message__field">
                 {messageArr.map(message => <MessageItem text={message} />)}
             </div>
             <form className="sendMess__form" onSubmit={addMessage}>
