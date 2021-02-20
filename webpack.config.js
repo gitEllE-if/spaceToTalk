@@ -60,6 +60,6 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        //new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin()
     ]
 }
