@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$mainColorLight: lightyellow;
+$mainColor: rgb(211, 152, 76);
+$mainColorDark: rgb(15, 44, 97);
+$mainFont: Roboto, sans-serif;
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $mainFont;
+    background: radial-gradient(circle, rgba(63,198,251,0.4108018207282913) 0%, rgba(14,25,79,1) 100%),
+    url('./src/img/space.jpg') center center /50% repeat;   //??   путь к файлу
+}
+
+.app__field {
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 640px;
+    min-height: 90vh;
+    border: 1px solid rgba($mainColorLight, 0.5);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .message__field {
+        padding: 10px;
+        height: 80vh;
+        border: 1px solid rgba($mainColorLight, 0.5);
+        border-radius: 10px;
+        overflow-y: auto;
+        .message__item{
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: rgba($mainColorLight, 0.8);
+            border-radius: 10px;
+        }
+    }
+    .sendMess__form {
+        display: flex;
+        height: 36px;
+        label {
+            padding: 9px 0;
+            width: 100px;
+            color: $mainColorDark;
+            background-color: rgba($mainColorLight, 0.8);
+            border-radius: 10px 0 0 10px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            border: 2px solid $mainColorLight;
+            margin-left: 2px;
+            margin-right: 2px;
+            padding: 0 10px;
+            outline: none;
+            background-color: rgba($mainColorLight, 0.8);
+        }
+        button {
+            width: 100px;
+            border: none;
+            background-color: $mainColor;
+            border-radius: 0 10px 10px 0;
+            color: $mainColorLight;
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+}
+
+.error {
+    border: 2px solid $mainColor !important;
+}
