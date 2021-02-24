@@ -6,25 +6,25 @@ function MessageItem(props) {
     );
 }
 
-let Arr = ['Привет', 'Как дела?'];
+const arr = ['Привет', 'Как дела?'];
 
 function MessageField() {
-    const [messageArr, setMessageArr] = useState(Arr);
+    const [messageArr, setMessageArr] = useState(arr);
+    const [inValue, setInValue] = useState('');
     const messFieldEl = useRef();
+    const messInputEl = useRef();
 
     const addMessage = useCallback((event) => {
         event.preventDefault();
-        const messageEl = event.target.elements[0];
-        if (!messageEl) return;
-        if (messageEl.value) {
-            setMessageArr([...messageArr, messageEl.value]);
-            messageEl.classList.remove('error');
-            messageEl.value = '';
+        if (inValue) {
+            setMessageArr([...messageArr, inValue]);
+            messInputEl.current.className = 'norm';
+            setInValue('');
         } else {
-            messageEl.classList.add('error');
+            messInputEl.current.className = 'error';
         }
-        messageEl.focus();
-    }, [messageArr]);
+        messInputEl.current.focus();
+    }, [inValue]);
 
     useEffect(() => {
         if (messFieldEl) {
@@ -34,7 +34,11 @@ function MessageField() {
 
     const renderMessage = useCallback((message) => {
         return (<MessageItem text={message} />);
-    }, [messageArr]);
+    }, []);
+
+    const changeInValue = useCallback((event) => {
+        setInValue(event.target.value);
+    }, []);
 
     return (
         <div className="app__field">
@@ -43,7 +47,9 @@ function MessageField() {
             </div>
             <form className="sendMess__form" onSubmit={addMessage}>
                 <label htmlFor="message__input">INPUT:</label>
-                <input type="text" name="message__input" placeholder="print message"></input>
+                <input ref={messInputEl} type="text" name="message__input" placeholder="print message"
+                    value={inValue} onChange={changeInValue}>
+                </input>
                 <button type="submit">SEND</button>
             </form>
         </div >

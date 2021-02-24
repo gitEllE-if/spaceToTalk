@@ -73,3 +73,7 @@ body {
 .error {
     border: 2px solid $mainColor !important;
 }
+
+.norm {
+    border: 2px solid $mainColorLight;
+}
