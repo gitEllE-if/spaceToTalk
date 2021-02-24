@@ -7,28 +7,28 @@ import '@fortawesome/fontawesome-free/js/solid'
 
 function MessageField() {
     const [messageArr, setMessageArr] = useState(ARR);
+    const [inValue, setInValue] = useState('');
     const messFieldEl = useRef();
+    const messInputEl = useRef();
 
     const addMessage = useCallback((event) => {
         event.preventDefault();
-        const messageEl = event.target.elements[0];
-        if (!messageEl) return;
-        if (messageEl.value) {
-            setMessageArr([...messageArr, { text: messageEl.value, author: 'Аноним' }]);
-            messageEl.classList.remove('error');
-            messageEl.value = '';
+        if (inValue) {
+            setMessageArr([...messageArr, { text: inValue, author: 'Аноним' }]);
+            messInputEl.current.className = 'norm';
+            setInValue('');
         } else {
-            messageEl.classList.add('error');
+            messInputEl.current.className = 'error';
         }
-        messageEl.focus();
-    }, [messageArr]);
+        messInputEl.current.focus();
+    }, [inValue]);
 
 
     useEffect(() => {
         //bot answer
         let timerID = null;
         const lastAuthor = messageArr[messageArr.length - 1].author;
-        if (lastAuthor && lastAuthor != BOT_NAME) {
+        if (lastAuthor && lastAuthor !== BOT_NAME) {
             timerID = setTimeout(() => {
                 setMessageArr([...messageArr, { text: lastAuthor + BOT_TEXT, author: BOT_NAME }]);
             }, 1000)
@@ -39,16 +39,20 @@ function MessageField() {
             messFieldEl.current.scrollTop = messFieldEl.current.scrollHeight;
         }
 
-        //didUnmount
+        //willUnmount
         return () => {
-            timerID ? clearTimeout(timerID) : null;
+            clearTimeout(timerID);
         }
     }, [messageArr]);
 
 
     const renderMessage = useCallback((message) => {
         return (<MessageItem text={message.text} author={message.author} />);
-    }, [messageArr]);
+    }, []);
+
+    const changeInValue = useCallback((event) => {
+        setInValue(event.target.value);
+    }, []);
 
     return (
         <div className="app__field">
@@ -57,7 +61,9 @@ function MessageField() {
             </div>
             <form className="sendMess__form" onSubmit={addMessage}>
                 <label htmlFor="message__input">INPUT:</label>
-                <input type="text" name="message__input" placeholder="print message"></input>
+                <input ref={messInputEl} type="text" name="message__input" placeholder="print message"
+                    value={inValue} onChange={changeInValue}>
+                </input>
                 <button type="submit"><i class="fas fa-paper-plane"></i></button>
             </form>
         </div >

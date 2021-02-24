@@ -7,8 +7,8 @@ function MessageItem(props) {
 
     useEffect(() => {
         if (messItemEl) {
-            if (author == BOT_NAME) {
-                messItemEl.current.classList.add('bot');
+            if (author === BOT_NAME) {
+                messItemEl.current.className += ' bot';
                 setAuthor(<i class="fas fa-robot"></i>);
             }
         }

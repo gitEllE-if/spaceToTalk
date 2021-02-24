@@ -89,6 +89,10 @@ body {
     border: 2px solid $mainColor !important;
 }
 
+.norm {
+    border: 2px solid $mainColorLight;
+}
+
 .bot {
     font-size: 18px !important;
     background-color: rgba($botColor, 0.8) !important;
