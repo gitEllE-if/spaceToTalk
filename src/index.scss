@@ -3,6 +3,7 @@
 $mainColorLight: lightyellow;
 $mainColor: rgb(211, 152, 76);
 $mainColorDark: rgb(15, 44, 97);
+$botColor: rgb(72, 142, 247);
 $mainFont: Roboto, sans-serif;
 
 body {
@@ -31,10 +32,24 @@ body {
         border-radius: 10px;
         overflow-y: auto;
         .message__item{
-            padding: 10px;
             margin-bottom: 10px;
-            background-color: rgba($mainColorLight, 0.8);
-            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            .message__author {
+                padding: 10px;
+                margin-right: 2px;
+                width: 12%;
+                background-color: rgba($mainColor, 0.8);
+                color: $mainColorLight;
+                border-radius: 10px 0 0 10px;
+            }
+            .message__text {
+                padding: 10px;
+                width: 100%;
+                background-color: rgba($mainColorLight, 0.8);
+                color: $mainColorDark;
+                border-radius: 0 10px 10px 0;
+            }
         }
     }
     .sendMess__form {
@@ -63,7 +78,7 @@ body {
             background-color: $mainColor;
             border-radius: 0 10px 10px 0;
             color: $mainColorLight;
-            font-size: 15px;
+            font-size: 20px;
             outline: none;
             cursor: pointer;
         }
@@ -76,4 +91,10 @@ body {
 
 .norm {
     border: 2px solid $mainColorLight;
+}
+
+.bot {
+    font-size: 18px !important;
+    background-color: rgba($botColor, 0.8) !important;
+    color: $mainColorLight !important;
 }
