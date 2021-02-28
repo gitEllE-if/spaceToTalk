@@ -1,8 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-$mainColorLight: lightyellow;
-$mainColor: rgb(211, 152, 76);
-$mainColorDark: rgb(15, 44, 97);
+$mainColorLight: #bcbcc5;
+$mainColor: #a3702e;
+$mainColorDark: #092b5e;
+$mainColorMedium: #0f4d9e;
+$mainColorDarkest: #092247;
 $botColor: rgb(72, 142, 247);
 $mainFont: Roboto, sans-serif;
 
@@ -11,61 +14,116 @@ body {
     margin: 0;
     padding: 0;
     font-family: $mainFont;
-    background: radial-gradient(circle, rgba(63,198,251,0.4108018207282913) 0%, rgba(14,25,79,1) 100%),
-    url('./src/img/space.jpg') center center /50% repeat;   //??   путь к файлу
+}
+
+.layout {
+    height: 100vh;
+    background-color: $mainColorDark;
+    display: flex;
+    flex-direction: column;
+    .header {
+        padding: 0 10px;
+        height: 50px;
+        background: linear-gradient(to right, $mainColorDark, $mainColorMedium, $mainColorDark);
+        border-bottom: 2px solid $mainColorMedium;
+        display: flex;
+        align-items: center;
+        color: $mainColorLight;
+        @media (max-width: 640px){
+            justify-content: space-between;
+        }
+        .header__title {
+            span {
+                font-weight: 700;
+            }
+        }
+        .header__menu {
+            margin-right: 40%;
+            @media (max-width: 640px){
+                margin-right: initial;
+            }
+        }
+    }
+    .center {
+        height: 100%;
+        display: flex;
+        .chat__list {
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            @media (max-width: 640px){
+                display: none;
+            }
+            .chatlist__title {
+                margin: 20px 10px;
+                text-align: center;
+                padding: 8px;
+                border: 2px solid $mainColorMedium;
+                color: $mainColorLight;
+                border-radius: 20px;
+            }
+        }
+    }
 }
 
 .app__field {
-    margin: 10px auto;
-    padding: 10px;
-    max-width: 640px;
-    min-height: 90vh;
-    border: 1px solid rgba($mainColorLight, 0.5);
-    border-radius: 20px;
+    background: radial-gradient(circle, rgba($mainColorMedium,0.4108018207282913) 0%, rgba($mainColorDark,1) 100%),
+    url('./src/img/space.jpg') center center /50% repeat;   //??   путь к файлу
+    width: 100%;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     .message__field {
-        padding: 10px;
         height: 80vh;
-        border: 1px solid rgba($mainColorLight, 0.5);
-        border-radius: 10px;
         overflow-y: auto;
         .message__item{
             margin-bottom: 10px;
+            margin-right: 10px;
             display: flex;
             justify-content: space-between;
-            .message__author {
-                padding: 10px;
-                margin-right: 2px;
-                width: 12%;
-                background-color: rgba($mainColor, 0.8);
-                color: $mainColorLight;
-                border-radius: 10px 0 0 10px;
+            .message__avatar {
+                color: $mainColorDark;
+                background-color: $mainColor;
+                margin-right: 10px;
             }
-            .message__text {
-                padding: 10px;
+            .message__body {
+                padding: 8px;
                 width: 100%;
                 background-color: rgba($mainColorLight, 0.8);
-                color: $mainColorDark;
-                border-radius: 0 10px 10px 0;
+                border-radius: 10px;
+                margin-left: 12px;
+                position: relative;
+                &::before {
+                    content: "";
+                    width: 0; 
+                    height: 0;
+                    position: absolute; 
+                    right: 100%; 
+                    top: 12px;
+                    border-top: 12px solid rgba($mainColorLight, 0.8);
+                    border-left: 18px solid transparent;
+                    border-bottom: 12px solid transparent;
+                }
+                .message__author {
+                    color: $mainColorMedium;
+                    margin-bottom: 4px;
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+                .message__text {
+                    color: $mainColorDark;
+                }
             }
         }
     }
     .sendMess__form {
         display: flex;
         height: 36px;
-        label {
-            padding: 9px 0;
-            width: 100px;
-            color: $mainColorDark;
-            background-color: rgba($mainColorLight, 0.8);
-            border-radius: 10px 0 0 10px;
-            text-align: center;
-        }
         input {
             width: 100%;
             border: 2px solid $mainColorLight;
+            border-radius: 20px 0 0 20px;
             margin-left: 2px;
             margin-right: 2px;
             padding: 0 10px;
@@ -76,7 +134,7 @@ body {
             width: 100px;
             border: none;
             background-color: $mainColor;
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 20px 20px 0;
             color: $mainColorLight;
             font-size: 20px;
             outline: none;
