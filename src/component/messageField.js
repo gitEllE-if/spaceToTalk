@@ -51,7 +51,7 @@ export default function MessageField() {
         return (<MessageItem text={message.text} author={message.author} />);
     }, []);
 
-    const changeInValue = useCallback((event) => {
+    const handleChange = useCallback((event) => {
         setInValue(event.target.value);
     }, []);
 
@@ -62,7 +62,7 @@ export default function MessageField() {
             </div>
             <form className="sendMess__form" onSubmit={addMessage}>
                 <input ref={messInputEl} type="text" name="message__input" placeholder="print message"
-                    value={inValue} onChange={changeInValue}>
+                    value={inValue} onChange={handleChange}>
                 </input>
                 <button type="submit"><SendRoundedIcon /></button>
             </form>

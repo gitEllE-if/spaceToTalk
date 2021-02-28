@@ -1,32 +1,12 @@
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import ChatRoundedIcon from '@material-ui/icons/ChatRounded';
 import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 import { useState, useCallback } from 'react';
 import { CHAT_ARR } from '../const';
 import { MUI_THEME } from '../muiTheme';
-
-const ChatItem = function chatItem(props) {
-    return (
-        <ListItem
-            button
-            selected={props.selected}
-            onClick={props.onClick}
-        >
-            <ListItemIcon>
-                <ChatRoundedIcon />
-            </ListItemIcon>
-            <ListItemText
-                primary={props.chat.name}
-                secondary={props.chat.desc}
-            />
-        </ListItem>
-    );
-}
+import ChatItem from './chatItem';
 
 export default function ChatList() {
     const [chatArr, setChatArr] = useState(CHAT_ARR);
@@ -40,7 +20,8 @@ export default function ChatList() {
         return (
             <ChatItem
                 chat={chat} idx={idx} selected={selectedIndex === idx}
-                onClick={(event) => handleListItemClick(event, idx)}
+                onClick={handleListItemClick}
+                icon={<ChatRoundedIcon />}
             />);
     });
 
@@ -55,16 +36,13 @@ export default function ChatList() {
                 </List>
                 <Divider />
                 <List component="nav" aria-label="secondary mailbox folder">
-                    <ListItem
-                        button
+                    <ChatItem
+                        chat={{ id: 'id_add', name: 'add', desc: '' }}
+                        idx={chatArr.length}
                         selected={selectedIndex === chatArr.length}
-                        onClick={(event) => handleListItemClick(event, chatArr.length)}
-                    >
-                        <ListItemIcon>
-                            <AddCommentRoundedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="add chat" />
-                    </ListItem>
+                        onClick={handleListItemClick}
+                        icon={<AddCommentRoundedIcon />}
+                    />
                 </List>
             </MuiThemeProvider>
         </div>
