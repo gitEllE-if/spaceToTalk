@@ -1,13 +1,15 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-import MessageItem from './messageItem';
 import { ARR, BOT_NAME, BOT_TEXT } from '../const';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
+import MessageItem from './messageItem';
+import usePrev from '../hook';
 
 export default function MessageField() {
     const [messageArr, setMessageArr] = useState(ARR);
     const [inValue, setInValue] = useState('');
     const messFieldEl = useRef();
     const messInputEl = useRef();
+    const prevMessageArr = usePrev(messageArr);
 
     const addMessage = useCallback((event) => {
         event.preventDefault();
@@ -29,7 +31,7 @@ export default function MessageField() {
         //bot answer
         let timerID = null;
         const lastAuthor = messageArr[messageArr.length - 1].author;
-        if (lastAuthor && lastAuthor !== BOT_NAME) {
+        if (prevMessageArr?.length < messageArr.length && lastAuthor && lastAuthor !== BOT_NAME) {
             timerID = setTimeout(() => {
                 setMessageArr([...messageArr, { text: lastAuthor + BOT_TEXT, author: BOT_NAME }]);
             }, 1000)
@@ -44,7 +46,7 @@ export default function MessageField() {
         return () => {
             clearTimeout(timerID);
         }
-    }, [messageArr]);
+    }, [messageArr, prevMessageArr, addMessage]);
 
 
     const renderMessage = useCallback((message) => {
