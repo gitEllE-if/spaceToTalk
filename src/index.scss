@@ -156,3 +156,16 @@ body {
     background-color: rgba($botColor, 0.8) !important;
     color: $mainColorLight !important;
 }
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    .profile__name {
+        margin-top: 10px;
+        color: $mainColorLight;
+    }
+}
+
+.home {
+    color: $mainColorLight;
+}
