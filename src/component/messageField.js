@@ -30,7 +30,7 @@ export default function MessageField() {
     useEffect(() => {
         //bot answer
         let timerID = null;
-        const lastAuthor = messageArr[messageArr.length - 1].author;
+        const lastAuthor = messageArr[messageArr.length - 1]?.author;
         if (prevMessageArr?.length < messageArr.length && lastAuthor && lastAuthor !== BOT_NAME) {
             timerID = setTimeout(() => {
                 setMessageArr([...messageArr, { text: lastAuthor + BOT_TEXT, author: BOT_NAME }]);

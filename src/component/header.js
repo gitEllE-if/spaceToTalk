@@ -12,11 +12,11 @@ export default function Header() {
 
     const handleClick = useCallback((event) => {
         setAnchorEl(event.currentTarget);
-    });
+    }, []);
 
     const handleClose = useCallback(() => {
         setAnchorEl(null);
-    });
+    }, []);
 
     return (
         <div className="header">
