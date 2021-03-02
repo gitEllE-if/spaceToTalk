@@ -1,15 +1,15 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import { ARR, BOT_NAME, BOT_TEXT } from '../const';
+import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import MessageItem from './messageItem';
-import { ARR, BOT_NAME, BOT_TEXT } from '../const.js';
+import usePrev from '../hook';
 
-import '@fortawesome/fontawesome-free/js/fontawesome'
-import '@fortawesome/fontawesome-free/js/solid'
-
-function MessageField() {
+export default function MessageField() {
     const [messageArr, setMessageArr] = useState(ARR);
     const [inValue, setInValue] = useState('');
     const messFieldEl = useRef();
     const messInputEl = useRef();
+    const prevMessageArr = usePrev(messageArr);
 
     const addMessage = useCallback((event) => {
         event.preventDefault();
@@ -23,12 +23,15 @@ function MessageField() {
         messInputEl.current.focus();
     }, [inValue]);
 
+    useEffect(() => {
+        messInputEl?.current.focus();
+    }, []);
 
     useEffect(() => {
         //bot answer
         let timerID = null;
-        const lastAuthor = messageArr[messageArr.length - 1].author;
-        if (lastAuthor && lastAuthor !== BOT_NAME) {
+        const lastAuthor = messageArr[messageArr.length - 1]?.author;
+        if (prevMessageArr?.length < messageArr.length && lastAuthor && lastAuthor !== BOT_NAME) {
             timerID = setTimeout(() => {
                 setMessageArr([...messageArr, { text: lastAuthor + BOT_TEXT, author: BOT_NAME }]);
             }, 1000)
@@ -43,14 +46,14 @@ function MessageField() {
         return () => {
             clearTimeout(timerID);
         }
-    }, [messageArr]);
+    }, [messageArr, prevMessageArr, addMessage]);
 
 
     const renderMessage = useCallback((message) => {
         return (<MessageItem text={message.text} author={message.author} />);
     }, []);
 
-    const changeInValue = useCallback((event) => {
+    const handleChange = useCallback((event) => {
         setInValue(event.target.value);
     }, []);
 
@@ -60,14 +63,11 @@ function MessageField() {
                 {messageArr.map(renderMessage)}
             </div>
             <form className="sendMess__form" onSubmit={addMessage}>
-                <label htmlFor="message__input">INPUT:</label>
                 <input ref={messInputEl} type="text" name="message__input" placeholder="print message"
-                    value={inValue} onChange={changeInValue}>
+                    value={inValue} onChange={handleChange}>
                 </input>
-                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                <button type="submit"><SendRoundedIcon /></button>
             </form>
         </div >
     );
 }
-
-export default MessageField;

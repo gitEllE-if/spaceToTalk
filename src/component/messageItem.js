@@ -1,29 +1,21 @@
-import { useRef, useEffect, useState } from "react";
+import { Avatar } from "@material-ui/core";
+import EmojiEmotionsRoundedIcon from '@material-ui/icons/EmojiEmotionsRounded';
 import { BOT_NAME } from '../const.js';
 
-function MessageItem(props) {
-    const messItemEl = useRef();
-    const [author, setAuthor] = useState(props.author);
-
-    useEffect(() => {
-        if (messItemEl) {
-            if (author === BOT_NAME) {
-                messItemEl.current.className += ' bot';
-                setAuthor(<i class="fas fa-robot"></i>);
-            }
-        }
-    }, [author]);
-
+export default function MessageItem(props) {
     return (
         <div className="message__item">
-            <div ref={messItemEl} className="message__author">
-                {author}
-            </div>
-            <div className="message__text">
-                {props.text}
+            <Avatar className={`message__avatar ${props.author === BOT_NAME ? "bot" : ""}`}>
+                {props.author === BOT_NAME ? <EmojiEmotionsRoundedIcon /> : props.author[0]}
+            </Avatar>
+            <div className="message__body">
+                <div className="message__author">
+                    {props.author}
+                </div>
+                <div className="message__text">
+                    {props.text}
+                </div>
             </div>
         </div>
     );
 }
-
-export default MessageItem;

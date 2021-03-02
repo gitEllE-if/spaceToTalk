@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import MessageField from './component/messageField';
+import Layout from './component/layout';
 
 ReactDOM.render(
     <React.StrictMode>
-        <MessageField />
+        <Layout />
     </React.StrictMode>,
     document.getElementById('root'),
 );
