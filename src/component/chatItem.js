@@ -3,24 +3,24 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { useCallback } from 'react';
 
-export default function chatItem(props) {
+export default function ChatItem({ chat, idx, selected, onClick, icon }) {
 
     const handleClick = useCallback((event) => {
-        props.onClick(event, props.idx);
-    }, [props.idx, props.onClick]);
+        onClick(event, idx);
+    }, [idx, onClick]);
 
     return (
         <ListItem
             button
-            selected={props.selected}
+            selected={selected}
             onClick={handleClick}
         >
             <ListItemIcon>
-                {props.icon}
+                {icon}
             </ListItemIcon>
             <ListItemText
-                primary={props.chat.name}
-                secondary={props.chat.desc}
+                primary={chat.name}
+                secondary={chat.desc}
             />
         </ListItem>
     );

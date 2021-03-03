@@ -46,9 +46,21 @@ export const MUI_THEME = createMuiTheme({
                 color: COLOR.light
             }
         },
+        MuiButton: {
+            root: {
+                color: COLOR.light,
+                backgroundColor: COLOR.medium
+            }
+        },
         MuiMenuItem: {
             root: {
-                color: COLOR.medium
+                color: COLOR.darkest,
+                "&$selected": {
+                    backgroundColor: COLOR.medium,
+                    "&:hover": {
+                        backgroundColor: COLOR.main
+                    }
+                }
             }
         }
     }

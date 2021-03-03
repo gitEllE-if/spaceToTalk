@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './component/layout';
+import Routing from './component/routing';
 import './index.scss';
 
 ReactDOM.render(
     <React.StrictMode>
-        <Layout />
+        <Routing />
     </React.StrictMode>,
     document.getElementById('root'),
 );

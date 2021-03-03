@@ -13,6 +13,9 @@ module.exports = {
             return process.env.NODE_ENV === 'development' ? 'app.js' : 'app.[contenthash].js';
         }
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     module: {
         rules: [
             {

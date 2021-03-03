@@ -6,7 +6,6 @@ import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
-
 import { MUI_THEME } from '../muiTheme';
 
 export default function Header() {
@@ -14,11 +13,11 @@ export default function Header() {
 
     const handleClick = useCallback((event) => {
         setAnchorEl(event.currentTarget);
-    });
+    }, []);
 
     const handleClose = useCallback(() => {
         setAnchorEl(null);
-    });
+    }, []);
 
     return (
         <div className="header">
@@ -44,7 +43,9 @@ export default function Header() {
                     </Menu>
                 </div>
                 <div className='header__title'>
-                    SPACE <span> to talk  </span> <StarRoundedIcon />
+                    <Link to="/">
+                        SPACE <span> to talk  </span> <StarRoundedIcon />
+                    </Link>
                 </div>
             </MuiThemeProvider>
         </div>

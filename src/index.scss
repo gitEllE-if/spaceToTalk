@@ -16,6 +16,11 @@ body {
     font-family: $mainFont;
 }
 
+a {
+    text-decoration: none;
+    color: $mainColorMedium;
+}
+
 .layout {
     height: 100vh;
     background-color: $mainColorDark;
@@ -33,6 +38,9 @@ body {
             justify-content: space-between;
         }
         .header__title {
+            a {
+                color: $mainColorLight;
+            }
             span {
                 font-weight: 700;
             }
@@ -48,6 +56,8 @@ body {
         height: 100%;
         display: flex;
         .chat__list {
+            height: 90vh;
+            overflow-y: auto;
             width: 280px;
             display: flex;
             flex-direction: column;
@@ -62,13 +72,16 @@ body {
                 color: $mainColorLight;
                 border-radius: 20px;
             }
+            .chat__add {
+                margin: 20px;
+            }
         }
     }
 }
 
 .app__field {
     background: radial-gradient(circle, rgba($mainColorMedium,0.4108018207282913) 0%, rgba($mainColorDark,1) 100%),
-    url('./src/img/space.jpg') center center /50% repeat;   //??   путь к файлу
+    url('./src/img/space.jpg') center center /50% repeat;
     width: 100%;
     padding: 25px;
     display: flex;
@@ -158,14 +171,46 @@ body {
 }
 
 .profile {
+    padding: 50px;
     display: flex;
-    flex-direction: column;
-    .profile__name {
-        margin-top: 10px;
-        color: $mainColorLight;
+    justify-content: space-evenly;
+    align-items: center;
+    .profile__avatar {
+        width: 120px;
+        height: 120px;
+    }
+    .profile__list {
+        color: $mainColorDarkest;
+        list-style: none;
+        font-size: 18px;
+        text-align: left;
     }
 }
 
-.home {
-    color: $mainColorLight;
+.data__field {
+    background-color: rgba($mainColorLight, 0.6);
+    width: 70%;
+    margin: auto auto;
+    padding: 30px;
+    color: $mainColorDarkest;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .home__text{
+        margin-bottom: 20px;
+    }
+    .home__link {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-evenly;
+        a {
+            font-size: 18px;
+            font-weight: 700;
+            &:hover{
+                color: $mainColor;
+            }
+        }
+    }
 }
