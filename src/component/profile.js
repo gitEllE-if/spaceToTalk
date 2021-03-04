@@ -1,13 +1,25 @@
 import { Avatar } from "@material-ui/core";
 import { useCallback } from "react";
-import { USER } from '../const';
+import { useDispatch, useSelector } from "react-redux";
+import { changeName, changeAge, changeCity } from "../store/profile/actions";
+import ProfileChangeDialog from "./profileChangeDialog";
 
 export default function Profile() {
+    const profile = useSelector(store => store.profile);
+    const dispatch = useDispatch();
+
+    const handleChangeProfile = useCallback((newProfile) => {
+        console.log(newProfile);
+        dispatch(changeName(newProfile.name));
+        dispatch(changeAge(+newProfile.age));
+        dispatch(changeCity(newProfile.city));
+    }, [dispatch]);
+
     const renderUserParam = useCallback((param) =>
         <li>
-            {param}: {USER[param]} <br /><br />
+            {param}: {profile[param]} <br /><br />
         </li>
-        , []);
+        , [profile]);
 
     return (
         <div className="app__field">
@@ -15,9 +27,10 @@ export default function Profile() {
                 <div className='profile'>
                     <Avatar className='profile__avatar'></Avatar>
                     <ul className='profile__list'>
-                        {Object.keys(USER).map(renderUserParam)}
+                        {Object.keys(profile).map(renderUserParam)}
                     </ul>
                 </div>
+                <ProfileChangeDialog onChangeProfile={handleChangeProfile} />
             </div>
         </div >
     );
