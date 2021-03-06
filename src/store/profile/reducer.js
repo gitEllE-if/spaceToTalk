@@ -1,9 +1,9 @@
 import { CHANGE_NAME, CHANGE_AGE, CHANGE_CITY } from './actions'
 
 const initialState = {
-    name: 'Name',
+    name: 'Аноним',
     age: 99,
-    city: 'City'
+    city: ''
 };
 
 const profileReducer = (state = initialState, action) => {

@@ -1,7 +1,7 @@
 import { ADD_CHAT, ADD_MESSAGE } from './actions'
 
 const initialState = {
-    chats: [
+    chatArr: [
         {
             id: 'id1',
             name: 'My Chat',
@@ -14,11 +14,11 @@ const initialState = {
 const chatsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CHAT:
-            return { ...state, chats: [...state.chats, { ...action.payload }] };
+            return { ...state, chatArr: [...state.chatArr, { ...action.payload }] };
         case ADD_MESSAGE:
             const newState = { ...state };
-            const NewChat = { ...[...state.chats][action.payload.idx], messages: [...[...state.chats][action.payload.idx].messages, action.payload.message] };
-            newState.chats[action.payload.idx] = NewChat;
+            const NewChat = { ...[...state.chatArr][action.payload.idx], messages: [...[...state.chatArr][action.payload.idx].messages, action.payload.message] };
+            newState.chatArr[action.payload.idx] = NewChat;
             return newState;
         default:
             return state;

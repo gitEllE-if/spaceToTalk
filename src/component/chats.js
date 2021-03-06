@@ -2,27 +2,23 @@ import { useParams } from "react-router-dom";
 import { useMemo, useCallback, useEffect } from "react";
 import ChatList from "./chatList";
 import MessageField from "./messageField";
-import { BOT_NAME, BOT_TEXT, USER } from '../const';
+import { BOT_NAME, BOT_TEXT } from '../const';
 import MessageSend from "./messageSend";
 import { useDispatch, useSelector } from "react-redux";
-import { addChat, addMessage } from "../store/chats/actions";
+import { addMessage } from "../store/chats/actions";
 
 export default function Chats() {
     const params = useParams();
+    const profile = useSelector(store => store.profile);
     const chats = useSelector(store => store.chats);
     const dispatch = useDispatch();
 
-    const selectedIndex = useMemo(() => chats.chats.findIndex((chat) => chat.id === params.chatId), [params, chats]);
-    // const selectedChat = useMemo(() => chatArr.find((chat) => chat.id === params.chatId), [params, chatArr]);
-    const selectedChat = useMemo(() => chats.chats[selectedIndex], [params, chats, selectedIndex]);
+    const selectedIndex = useMemo(() => chats.chatArr.findIndex((chat) => chat.id === params.chatId), [params, chats]);
+    const selectedChat = useMemo(() => chats.chatArr[selectedIndex], [chats, selectedIndex]);
 
-    const handleAddMessage = useCallback((text, author = USER.name) => {
+    const handleAddMessage = useCallback((text, author = profile.name) => {
         dispatch(addMessage(selectedIndex, text, author));
     }, [dispatch, chats, selectedIndex]);
-
-    const handleAddChat = useCallback((chatName, chatType) => {
-        dispatch(addChat({ id: `id${chats.chats.length + 1}`, name: chatName, type: chatType, messages: [] }));
-    }, [dispatch, chats]);
 
     useEffect(() => {
         let timerID = null;
@@ -39,7 +35,7 @@ export default function Chats() {
 
     return (
         <>
-            <ChatList chats={chats.chats} selectedId={selectedIndex} onAddChat={handleAddChat} />
+            <ChatList selectedId={selectedIndex} />
             <div className="app__field">
                 <MessageField messages={selectedChat?.messages || []} />
                 {params.chatId && selectedChat && <MessageSend onAddMessage={handleAddMessage} />}
