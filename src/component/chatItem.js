@@ -3,7 +3,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 export default function ChatItem({ chat, selected, icon }) {
-
     return (
         <ListItem
             button
