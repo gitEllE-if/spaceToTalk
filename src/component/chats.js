@@ -10,8 +10,7 @@ export default function Chats() {
     const [chatArr, setChatArr] = useState(CHAT_ARR);
 
     const selectedIndex = useMemo(() => chatArr.findIndex((chat) => chat.id === params.chatId), [params, chatArr]);
-    // const selectedChat = useMemo(() => chatArr.find((chat) => chat.id === params.chatId), [params, chatArr]);
-    const selectedChat = useMemo(() => chatArr[selectedIndex], [params, chatArr, selectedIndex]);
+    const selectedChat = useMemo(() => chatArr[selectedIndex], [chatArr, selectedIndex]);
 
     const handleAddMessage = useCallback((text, author = USER.name) => {
         const updatedChat = { ...selectedChat, messages: [...selectedChat.messages, { text, author }] };

@@ -3,7 +3,7 @@ import SendRoundedIcon from '@material-ui/icons/SendRounded';
 
 export default function MessageSend({ onAddMessage }) {
     const [inValue, setInValue] = useState('');
-    const [emptyIn, setEmptyIn] = useState(false);
+    const [inError, setInError] = useState(false);
     const messInputEl = useRef();
 
     useEffect(() => {
@@ -16,19 +16,19 @@ export default function MessageSend({ onAddMessage }) {
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault();
-        if (inValue) {
+        if (inValue && inValue.trim()) {
             onAddMessage(inValue);
             setInValue('');
-            setEmptyIn(false);              //  (>_< )
+            setInError(false);
         } else {
-            setEmptyIn(true);               //  (×﹏×)
+            setInError(true);
         }
         messInputEl.current.focus();
     }, [onAddMessage, inValue]);
 
     return (
         <form className="sendMess__form" onSubmit={handleSubmit}>
-            <input ref={messInputEl} className={emptyIn ? 'error' : 'norm'}
+            <input ref={messInputEl} className={inError ? 'error' : 'norm'}
                 type="text" name="message__input" placeholder="print message"
                 value={inValue} onChange={handleChange}>
             </input>
