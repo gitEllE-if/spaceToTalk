@@ -101,6 +101,8 @@ a {
                 margin-right: 10px;
             }
             .message__body {
+                display: flex;
+                justify-content: space-between;
                 padding: 8px;
                 width: 100%;
                 background-color: rgba($mainColorLight, 0.8);
@@ -154,6 +156,11 @@ a {
             cursor: pointer;
         }
     }
+}
+
+.app__text{
+    color: $mainColorLight;
+    font-size: 16px;
 }
 
 .error {
