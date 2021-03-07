@@ -9,7 +9,6 @@ import { MUI_THEME } from '../muiTheme';
 import ChatItem from './chatItem';
 import ChatAddDialog from './chatAddDialog';
 import { addChat } from "../store/chats/actions";
-import { addMessagesArr } from '../store/messages/actions';
 
 export default function ChatList({ chatId }) {
     const chats = useSelector(store => store.chats.chatArr);
@@ -18,13 +17,8 @@ export default function ChatList({ chatId }) {
     const selectedId = useMemo(() => chats.findIndex((chat) => chat.id === chatId), [chatId, chats]);
 
     const handleAddChat = useCallback((chatName, chatType) => {
-        let nextId = 1;
-        if (chats.length) {
-            nextId = +chats[chats.length - 1].id.replace(/\D+/g, "") + 1;  // last id number + 1
-        }
-        dispatch(addChat({ id: `id${nextId}`, name: chatName, type: chatType }));
-        dispatch(addMessagesArr({ [`id${nextId}`]: [] }));
-    }, [dispatch, chats]);
+        dispatch(addChat({ name: chatName, type: chatType }));
+    }, [dispatch]);
 
     const renderChat = useCallback((chat, idx) => {
         return (

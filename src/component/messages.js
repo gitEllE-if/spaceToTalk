@@ -12,12 +12,8 @@ export default function Messages({ chatId }) {
     const selectedMessages = useMemo(() => messages[chatId], [chatId, messages]);
 
     const handleAddMessage = useCallback((text, author = profile.name) => {
-        let nextMessId = 1;
-        if (selectedMessages.length) {
-            nextMessId = +selectedMessages[selectedMessages.length - 1]?.id.replace(/\D+/g, "") + 1;  // last id number + 1
-        }
-        dispatch(addMessage(chatId, { id: `id${nextMessId}`, text: text, author: author }));
-    }, [dispatch, chatId, selectedMessages]);
+        dispatch(addMessage(chatId, { text: text, author: author }));
+    }, [dispatch, chatId]);
 
     return (
         <>
