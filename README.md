@@ -6,7 +6,7 @@
 
 Dear friend,
 
-if you just want to submit your homework, feel free to copy my code (with bags ... 🤦‍♀️),
+if you just want to submit your homework, feel free to copy my code (with bugs ... 🤦‍♀️),
 
 ❌ BUT ❌
 
