@@ -2,7 +2,7 @@ import { ADD_MESSAGE, ADD_MESSAGES_ARR, DEL_MESSAGE } from './actions'
 
 const initialState = {
     messageArr: {
-        'id1': [{ id: 'id1', text: 'Привет', author: 'Эля' }]
+        'id1': [{ id: 'id1', text: 'Привет', author: 'elle' }]
     }
 };
 

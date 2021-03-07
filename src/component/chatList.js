@@ -1,11 +1,9 @@
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ChatRoundedIcon from '@material-ui/icons/ChatRounded';
 import { useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { MUI_THEME } from '../muiTheme';
 import ChatItem from './chatItem';
 import ChatAddDialog from './chatAddDialog';
 import { addChat } from "../store/chats/actions";
@@ -36,13 +34,11 @@ export default function ChatList({ chatId }) {
             <span className="chatlist__title">
                 CHATS
             </span>
-            <MuiThemeProvider theme={MUI_THEME}>
-                <List >
-                    {chats.map(renderChat)}
-                </List>
-                <Divider />
-                <ChatAddDialog onAddChat={handleAddChat} />
-            </MuiThemeProvider>
+            <List >
+                {chats.map(renderChat)}
+            </List>
+            <Divider />
+            <ChatAddDialog onAddChat={handleAddChat} />
         </div>
     );
 }

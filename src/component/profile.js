@@ -9,8 +9,9 @@ export default function Profile() {
     const dispatch = useDispatch();
 
     const handleChangeProfile = useCallback((newProfile) => {
+        console.log(newProfile);
         dispatch(changeName(newProfile.name));
-        dispatch(changeAge(+newProfile.age));
+        dispatch(changeAge(newProfile.age));
         dispatch(changeCity(newProfile.city));
     }, [dispatch]);
 

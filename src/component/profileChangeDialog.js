@@ -11,7 +11,7 @@ import { useState, useCallback } from 'react';
 export default function ProfileChangeDialog({ onChangeProfile }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
-    const [age, setAge] = useState('99');
+    const [age, setAge] = useState('');
     const [city, setCity] = useState('');
 
     const handleClickOpen = useCallback(() => {
@@ -35,7 +35,7 @@ export default function ProfileChangeDialog({ onChangeProfile }) {
     }, []);
 
     const handleApply = useCallback(() => {
-        if (name) {
+        if (name && name.trim()) {
             onChangeProfile({ name, age, city });
         }
         handleClose();
