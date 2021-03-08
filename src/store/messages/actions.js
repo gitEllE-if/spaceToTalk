@@ -1,11 +1,17 @@
 export const ADD_MESSAGE = 'MESSAGES::ADD_MESSAGE';
 export const ADD_MESSAGES_ARR = 'MESSAGES::ADD_MESSAGES_ARR';
 export const DEL_MESSAGE = 'MESSAGES::DEL_MESSAGE';
+export const DEL_MESSAGES_ARR = 'MESSAGES::DEL_MESSAGES_ARR';
 import { BOT_NAME, BOT_TEXT } from "../../const";
 
 export const addMessagesArr = (newMessageArr) => ({
     type: ADD_MESSAGES_ARR,
     payload: newMessageArr
+});
+
+export const delMessagesArr = (chatId) => ({
+    type: DEL_MESSAGES_ARR,
+    payload: chatId
 });
 
 export const delMessage = (chatId, messId) => ({

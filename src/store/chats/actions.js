@@ -1,8 +1,9 @@
-import { addMessagesArr } from "../messages/actions";
+import { addMessagesArr, delMessagesArr } from "../messages/actions";
 
 export const ADD_CHAT = 'CHATS::ADD_CHAT';
+export const DEL_CHAT = 'CHATS::DEL_CHAT';
 
-export const addChatDirect = (newChat) => ({
+const addChatDirect = (newChat) => ({
     type: ADD_CHAT,
     payload: newChat
 });
@@ -15,4 +16,14 @@ export const addChat = (newChat) => (dispatch, getState) => {
     }
     dispatch(addChatDirect({ ...newChat, id: `id${nextChatId}` }));
     dispatch(addMessagesArr({ [`id${nextChatId}`]: [] }));
+};
+
+const delChatDirect = (chatId) => ({
+    type: DEL_CHAT,
+    payload: chatId
+});
+
+export const delChat = (chatId) => (dispatch, getState) => {
+    dispatch(delMessagesArr(chatId));
+    dispatch(delChatDirect(chatId));
 };

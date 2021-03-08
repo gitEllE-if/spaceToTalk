@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, ADD_MESSAGES_ARR, DEL_MESSAGE } from './actions'
+import { ADD_MESSAGE, ADD_MESSAGES_ARR, DEL_MESSAGE, DEL_MESSAGES_ARR } from './actions'
 
 const initialState = {
     messageArr: {
@@ -25,6 +25,12 @@ const messagesReducer = (state = initialState, action) => {
         case ADD_MESSAGES_ARR:
             return {
                 ...state, messageArr: { ...state.messageArr, ...action.payload }
+            };
+        case DEL_MESSAGES_ARR:
+            let newList = { ...state.messageArr };
+            delete newList[action.payload];
+            return {
+                ...state, messageArr: { ...newList }
             };
         default:
             return state;

@@ -38,7 +38,7 @@ export default function ChatAddDialog({ onAddChat }) {
     }, []);
 
     const handleApply = useCallback(() => {
-        if (chatName) {
+        if (chatName && chatName.trim()) {
             onAddChat(chatName, chatType);
         }
         handleClose();

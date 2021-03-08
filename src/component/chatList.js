@@ -34,7 +34,7 @@ export default function ChatList({ chatId }) {
             <span className="chatlist__title">
                 CHATS
             </span>
-            <List >
+            <List dense='true'>
                 {chats.map(renderChat)}
             </List>
             <Divider />
