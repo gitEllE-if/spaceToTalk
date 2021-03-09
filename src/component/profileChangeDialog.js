@@ -5,21 +5,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import MenuItem from '@material-ui/core/MenuItem';
-import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import { useState, useCallback } from 'react';
-import { CHAT_TYPE } from '../const';
 
-export default function ChatAddDialog({ onAddChat }) {
+export default function ProfileChangeDialog({ onChangeProfile }) {
     const [open, setOpen] = useState(false);
-    const [chatName, setChatName] = useState('');
-    const [chatType, setChatType] = useState(CHAT_TYPE[0]);
-
-    const renderChatTypes = useCallback((type) =>
-        <MenuItem value={type}>
-            {type}
-        </MenuItem>
-        , []);
+    const [name, setName] = useState('');
+    const [age, setAge] = useState('');
+    const [city, setCity] = useState('');
 
     const handleClickOpen = useCallback(() => {
         setOpen(true);
@@ -29,33 +22,37 @@ export default function ChatAddDialog({ onAddChat }) {
         setOpen(false);
     }, []);
 
-    const handleChangeType = useCallback((event) => {
-        setChatType(event.target.value);
+    const handleChangeName = useCallback((event) => {
+        setName(event.target.value);
     }, []);
 
-    const handleChangeName = useCallback((event) => {
-        setChatName(event.target.value);
+    const handleChangeAge = useCallback((event) => {
+        setAge(event.target.value);
+    }, []);
+
+    const handleChangeCity = useCallback((event) => {
+        setCity(event.target.value);
     }, []);
 
     const handleApply = useCallback(() => {
-        if (chatName && chatName.trim()) {
-            onAddChat(chatName, chatType);
+        if (name && name.trim()) {
+            onChangeProfile({ name, age, city });
         }
         handleClose();
-    }, [onAddChat, chatName, chatType]);
+    }, [onChangeProfile, name, age, city]);
 
     return (
-        <div className="chat__add">
-            <Button onClick={handleClickOpen} startIcon={<AddCommentRoundedIcon />}>
-                Add new Chat
+        <div className="profile__change">
+            <Button variant="contained" onClick={handleClickOpen} startIcon={<EditRoundedIcon />}>
+                Change
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Create new Chat</DialogTitle>
+                <DialogTitle id="form-dialog-title">Profile edit</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        To add new Chat, please enter its name and select type
+                        To edit Profile, please enter new name, age, city
                     </DialogContentText>
-                    <TextField required value={chatName} onChange={handleChangeName}
+                    <TextField required value={name} onChange={handleChangeName}
                         autoFocus
                         margin="dense"
                         label="name"
@@ -63,14 +60,20 @@ export default function ChatAddDialog({ onAddChat }) {
                         fullWidth
                         helperText="Please enter name"
                     />
-                    <TextField value={chatType} onChange={handleChangeType}
-                        select
+                    <TextField value={age} onChange={handleChangeAge}
                         margin="dense"
+                        label="age"
+                        type="number"
                         fullWidth
-                        helperText="Please select chat type"
-                    >
-                        {CHAT_TYPE.map(renderChatTypes)}
-                    </TextField>
+                        helperText="Please enter age"
+                    />
+                    <TextField value={city} onChange={handleChangeCity}
+                        margin="dense"
+                        label="city"
+                        type="text"
+                        fullWidth
+                        helperText="Please enter city"
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} >

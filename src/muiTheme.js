@@ -9,6 +9,11 @@ const COLOR = {
 };
 
 export const MUI_THEME = createMuiTheme({
+    palette: {
+        primary: {
+            main: COLOR.medium
+        }
+    },
     overrides: {
         MuiListItem: {
             root: {

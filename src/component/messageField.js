@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import MessageItem from './messageItem';
 
-export default function MessageField({ messages }) {
+export default function MessageField({ chatId, messages }) {
     const messFieldEl = useRef();
 
     useEffect(() => {
@@ -11,8 +11,8 @@ export default function MessageField({ messages }) {
     }, [messages]);
 
     const renderMessage = useCallback((message) => {
-        return (<MessageItem text={message.text} author={message.author} />);
-    }, []);
+        return (<MessageItem chatId={chatId} message={message} />);
+    }, [chatId, messages]);
 
     return (
         <div ref={messFieldEl} className="message__field">

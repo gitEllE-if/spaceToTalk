@@ -24,7 +24,7 @@ export default function MessageSend({ onAddMessage }) {
             setInError(true);
         }
         messInputEl.current.focus();
-    }, [onAddMessage, inValue]);
+    }, [inValue]);
 
     return (
         <form className="sendMess__form" onSubmit={handleSubmit}>
