@@ -16,9 +16,7 @@ const messagesReducer = (state = initialState, action) => {
                 }
             };
         case DEL_MESSAGE:
-            let newArr = [...state.messageArr[action.payload.chatId]];
-            const idx = newArr.findIndex((mess) => mess.id == action.payload.messId);
-            newArr.splice(idx, 1);
+            const newArr = state.messageArr[action.payload.chatId].filter((mess) => mess.id !== action.payload.messId);
             return {
                 ...state, messageArr: { ...state.messageArr, [action.payload.chatId]: [...newArr] }
             };
@@ -27,7 +25,7 @@ const messagesReducer = (state = initialState, action) => {
                 ...state, messageArr: { ...state.messageArr, ...action.payload }
             };
         case DEL_MESSAGES_ARR:
-            let newList = { ...state.messageArr };
+            const newList = { ...state.messageArr };
             delete newList[action.payload];
             return {
                 ...state, messageArr: { ...newList }

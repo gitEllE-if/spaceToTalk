@@ -15,9 +15,7 @@ const chatsReducer = (state = initialState, action) => {
         case ADD_CHAT:
             return { ...state, chatArr: [...state.chatArr, { ...action.payload }] };
         case DEL_CHAT:
-            let newArr = [...state.chatArr];
-            const idx = newArr.findIndex((chat) => chat.id == action.payload);
-            newArr.splice(idx, 1);
+            const newArr = state.chatArr.filter((chat) => chat.id !== action.payload);
             return {
                 ...state, chatArr: [...newArr]
             };
