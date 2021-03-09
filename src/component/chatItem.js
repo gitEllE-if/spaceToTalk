@@ -3,6 +3,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
@@ -21,7 +22,9 @@ export default function ChatItem({ chat, selected, icon }) {
             selected={selected}
         >
             <ListItemIcon>
-                {icon}
+                <Badge color="secondary" badgeContent=" " invisible={!chat.highlighted}>
+                    {icon}
+                </Badge>
             </ListItemIcon>
             <ListItemText
                 primary={chat.name}
