@@ -1,0 +1,14 @@
+[
+	{
+		"id": "id1",
+		"name": "My Chat",
+		"type": "group chat",
+		"highlighted": false
+	},
+	{
+		"id": "id2",
+		"name": "React lessons",
+		"type": "group chat",
+		"highlighted": false
+	}
+]
