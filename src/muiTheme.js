@@ -12,6 +12,9 @@ export const MUI_THEME = createMuiTheme({
     palette: {
         primary: {
             main: COLOR.medium
+        },
+        secondary: {
+            main: COLOR.main
         }
     },
     overrides: {
