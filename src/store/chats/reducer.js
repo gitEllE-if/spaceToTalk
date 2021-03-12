@@ -1,4 +1,4 @@
-import { ADD_CHAT, DEL_CHAT } from './actions'
+import { ADD_CHAT, DEL_CHAT, SET_HIGHLIGHT } from './actions'
 
 const initialState = {
     chatArr: [
@@ -6,6 +6,7 @@ const initialState = {
             id: 'id1',
             name: 'My Chat',
             type: 'group chat',
+            highlighted: false
         }
     ]
 };
@@ -19,6 +20,11 @@ const chatsReducer = (state = initialState, action) => {
             return {
                 ...state, chatArr: [...newArr]
             };
+        case SET_HIGHLIGHT:
+            const newChatArr = state.chatArr.map((chat) =>
+                chat.id === action.payload.chatId ? { ...chat, highlighted: action.payload.highlighted } : chat
+            );
+            return { ...state, chatArr: [...newChatArr] };
         default:
             return state;
     }

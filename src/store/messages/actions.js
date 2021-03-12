@@ -1,8 +1,10 @@
+import { BOT_NAME, BOT_TEXT } from "../../const";
+import { setHighlight } from "../chats/actions";
+
 export const ADD_MESSAGE = 'MESSAGES::ADD_MESSAGE';
 export const ADD_MESSAGES_ARR = 'MESSAGES::ADD_MESSAGES_ARR';
 export const DEL_MESSAGE = 'MESSAGES::DEL_MESSAGE';
 export const DEL_MESSAGES_ARR = 'MESSAGES::DEL_MESSAGES_ARR';
-import { BOT_NAME, BOT_TEXT } from "../../const";
 
 export const addMessagesArr = (newMessageArr) => ({
     type: ADD_MESSAGES_ARR,
@@ -40,7 +42,11 @@ export const addMessage = (chatId, newMessage) => (dispatch, getState) => {
 
     if (newMessage.author !== BOT_NAME) {
         setTimeout(() => {
-            dispatch(addMessageDirect(chatId, { id: `id${++nextMessId}`, text: newMessage.author + BOT_TEXT, author: BOT_NAME }));
+            dispatch(addMessage(chatId, { text: newMessage.author + BOT_TEXT, author: BOT_NAME }));
         }, 1000);
+    }
+    else {
+        dispatch(setHighlight(chatId, true));
+        setTimeout(() => { dispatch(setHighlight(chatId, false)) }, 1000);
     }
 };
