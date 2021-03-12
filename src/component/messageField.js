@@ -4,6 +4,7 @@ import MessageItem from './messageItem';
 export default function MessageField({ chatId, messages }) {
     const messFieldEl = useRef();
 
+
     useEffect(() => {
         if (messFieldEl) {
             messFieldEl.current.scrollTop = messFieldEl.current.scrollHeight;

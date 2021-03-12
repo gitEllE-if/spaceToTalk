@@ -4,8 +4,10 @@ const COLOR = {
     light: '#bcbcc5',
     dark: '#092b5e',
     medium: '#0f4d9e',
-    main: '#a3702e',
-    darkest: '#092247'
+    bright: '#c47816',
+    brightDark: '#9c6010',
+    darkest: '#092247',
+    mainDark: '#c9770c'
 };
 
 export const MUI_THEME = createMuiTheme({
@@ -14,7 +16,7 @@ export const MUI_THEME = createMuiTheme({
             main: COLOR.medium
         },
         secondary: {
-            main: COLOR.main
+            main: COLOR.bright
         }
     },
     overrides: {
@@ -24,13 +26,13 @@ export const MUI_THEME = createMuiTheme({
                 "&$selected": {
                     backgroundColor: COLOR.medium,
                     "&:hover": {
-                        backgroundColor: COLOR.main
+                        backgroundColor: COLOR.brightDark
                     },
                 },
             },
             button: {
                 "&:hover": {
-                    backgroundColor: COLOR.main
+                    backgroundColor: COLOR.brightDark
                 },
             },
         },
@@ -58,17 +60,6 @@ export const MUI_THEME = createMuiTheme({
             root: {
                 color: COLOR.light,
                 backgroundColor: COLOR.medium
-            }
-        },
-        MuiMenuItem: {
-            root: {
-                color: COLOR.darkest,
-                "&$selected": {
-                    backgroundColor: COLOR.medium,
-                    "&:hover": {
-                        backgroundColor: COLOR.main
-                    }
-                }
             }
         }
     }

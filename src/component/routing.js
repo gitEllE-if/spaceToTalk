@@ -1,10 +1,21 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadChats } from "../store/chats/actions";
+import { loadMessages } from "../store/messages/actions";
 import Header from './header';
 import Profile from './profile';
 import Home from './home';
 import Chats from "./chats";
 
 export default function Routing() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loadChats());
+        dispatch(loadMessages());
+    }, []);
+
     return (
         <Router>
             <div className="layout">

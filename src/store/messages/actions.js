@@ -1,10 +1,14 @@
-import { BOT_NAME, BOT_TEXT } from "../../const";
+import { BOT_NAME, BOT_TEXT, API } from "../../const";
 import { setHighlight } from "../chats/actions";
 
 export const ADD_MESSAGE = 'MESSAGES::ADD_MESSAGE';
 export const ADD_MESSAGES_ARR = 'MESSAGES::ADD_MESSAGES_ARR';
 export const DEL_MESSAGE = 'MESSAGES::DEL_MESSAGE';
 export const DEL_MESSAGES_ARR = 'MESSAGES::DEL_MESSAGES_ARR';
+export const LOAD_MESSAGES = 'MESSAGES::LOAD_MESSAGES';
+export const LOAD_MESSAGES_REQUEST = 'MESSAGES::LOAD_MESSAGES_REQUEST';
+export const LOAD_MESSAGES_REQUEST_SUCCESS = 'MESSAGES::LOAD_MESSAGES_REQUEST_SUCCESS';
+export const LOAD_MESSAGES_REQUEST_FAILURE = 'MESSAGES::LOAD_MESSAGES_REQUEST_FAILURE';
 
 export const addMessagesArr = (newMessageArr) => ({
     type: ADD_MESSAGES_ARR,
@@ -48,5 +52,33 @@ export const addMessage = (chatId, newMessage) => (dispatch, getState) => {
     else {
         dispatch(setHighlight(chatId, true));
         setTimeout(() => { dispatch(setHighlight(chatId, false)) }, 1000);
+    }
+};
+
+export const loadMessagesRequest = () => ({
+    type: LOAD_MESSAGES_REQUEST
+});
+
+export const loadMessagesRequestSuccess = (data) => ({
+    type: LOAD_MESSAGES_REQUEST_SUCCESS,
+    payload: data
+});
+
+export const loadMessagesRequestFailure = (err) => ({
+    type: LOAD_MESSAGES_REQUEST_FAILURE,
+    payload: err
+});
+
+export const loadMessages = () => async (dispatch) => {
+    dispatch(loadMessagesRequest);
+    let result = null;
+    try {
+        result = await fetch(`${API}messages.json`);
+        const response = await result.json();
+        dispatch(loadMessagesRequestSuccess(response));
+    }
+    catch (err) {
+        console.log(err);
+        dispatch(loadMessagesRequestFailure(result.status));
     }
 };
