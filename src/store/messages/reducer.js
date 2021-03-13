@@ -35,11 +35,11 @@ const messagesReducer = (state = initialState, action) => {
                 ...state, messageArr: { ...newList }
             };
         case LOAD_MESSAGES_REQUEST:
-            return { ...state, request: STATUS.REQUEST };
+            return { ...state, request: STATUS.REQUEST, error: null };
         case LOAD_MESSAGES_REQUEST_SUCCESS:
-            return { ...state, messageArr: action.payload, request: STATUS.SUCCESS };
+            return { ...state, messageArr: action.payload, request: STATUS.SUCCESS, error: null };
         case LOAD_MESSAGES_REQUEST_FAILURE:
-            return { ...state, error: action.payload, request: STATUS.FAILURE };
+            return { ...state, request: STATUS.FAILURE, error: action.payload };
         default:
             return state;
     }

@@ -40,9 +40,9 @@ export default function ChatList({ chatId }) {
             case STATUS.REQUEST:
                 return <CircularProgress />;
             case STATUS.FAILURE:
-                return <div>error<br />{chatsError}</div>;
+                return <div className='error__field'>error<br /><span>{chatsError}</span></div>;
         }
-    }, [chatsRequest, chatsError, selectedId]);
+    }, [chatsRequest, chatsError, selectedId, chats]);
 
     return (
         <div className='chat__list'>

@@ -25,11 +25,11 @@ const chatsReducer = (state = initialState, action) => {
             );
             return { ...state, chatArr: [...newChatArr] };
         case LOAD_CHATS_REQUEST:
-            return { ...state, request: STATUS.REQUEST };
+            return { ...state, request: STATUS.REQUEST, error: null };
         case LOAD_CHATS_REQUEST_SUCCESS:
-            return { ...state, chatArr: action.payload, request: STATUS.SUCCESS };
+            return { ...state, chatArr: action.payload, request: STATUS.SUCCESS, error: null };
         case LOAD_CHATS_REQUEST_FAILURE:
-            return { ...state, error: action.payload, request: STATUS.FAILURE };
+            return { ...state, request: STATUS.FAILURE, error: action.payload };
         default:
             return state;
     }
