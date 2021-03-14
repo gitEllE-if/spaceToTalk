@@ -286,19 +286,58 @@ a {
 
 #blink {
     animation: blink1 7s linear infinite;
-  }
-  @keyframes blink1 {
+}
+@keyframes blink1 {
     0% { opacity: 0; }
     50% { opacity: 1; }
     100% { opacity: 0; }
-  }
+}
 
-  #increase {
+#increase {
     animation: increase1 7s linear infinite;
-  }
+}
   
-  @keyframes increase1 {
+@keyframes increase1 {
     0% { transform:scale(1); }
     50% { transform:scale(1.1); }
     100% { transform:scale(1); }
-  }
+}
+
+.installPopup__container {
+    position: fixed;
+    width: 100%;
+    bottom: 20px;
+    z-index: 1000;
+    .installPopup {
+        padding: 10px;
+        margin: 0 auto;
+        min-height: 50px;
+        position: relative;
+        width: 90%;
+        background: $mainColorLight;
+        text-align: center;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+       .installPopup__close {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        color: $mainColorMedium !important;
+        }
+       &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: 20px solid transparent;
+        border-top-color: $mainColorLight;
+        border-bottom: 0;
+        margin-left: -20px;
+        margin-bottom: -19px;
+    }
+}
