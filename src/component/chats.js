@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ChatList from "./chatList";
+import ChatSelect from "./chatSelect";
 import Error from "./error";
 import Messages from "./messages";
 
@@ -16,7 +17,7 @@ export default function Chats() {
                     <Messages chatId={params.chatId} /> :
                     chatsError ?
                         <Error errorCode={chatsError}></Error> :
-                        <div className="app__text">Please select Chat or create New</div>
+                        <ChatSelect />
                 }
             </main>
         </>

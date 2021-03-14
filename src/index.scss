@@ -72,12 +72,28 @@ a {
                 border: 2px solid $mainColorMedium;
                 color: $mainColorLight;
                 border-radius: 20px;
-                
-            }
-            .chat__add {
-                margin: 20px;
             }
         }
+    }
+}
+
+.chat__add {
+    margin: 20px;
+}
+
+.chat__select {
+    display: none;
+    ul {
+        color: $mainColorLight;
+        li{
+            margin-top: 10px;
+            a {
+                color: $mainColorLight;
+            }
+        }
+    }
+    @media (max-width: 640px){
+        display: block;
     }
 }
 
@@ -182,6 +198,10 @@ a {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    @media (max-width: 600px){
+        flex-direction: column;
+        padding: initial;
+    }
     .profile__avatar {
         width: 120px;
         height: 120px;
@@ -212,11 +232,23 @@ a {
         margin-top: 20px;
         display: flex;
         justify-content: space-evenly;
+        @media (max-width: 450px){
+            flex-direction: column;
+        }
         a {
             font-size: 18px;
             font-weight: 700;
             &:hover{
                 color: $brightColor;
+            }
+            &:last-child {
+                @media (max-width: 450px){
+                    margin-top: 20px;
+                    margin-right: 30px;
+                }
+            }
+            @media (max-width: 450px){
+                margin-right: 30px;
             }
         }
     }
@@ -231,15 +263,19 @@ a {
         display: flex;
         flex-direction: column;
         position: relative;
+        .img__bottom {
+            width: 100%;
+        }
         .img__top {
+            width: 80%;
             position: absolute;
             top: 20px;
-            left: 40px;
+            left: 10%;
         }
         .error__code{
             position: absolute;
             top: 300px;
-            left: 140px;
+            left: 42%;
             color: $mainColorLight;
             span {
                 font-size: 30px;
