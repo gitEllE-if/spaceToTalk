@@ -28,7 +28,7 @@ export default function MessageItem({ chatId, message }) {
                         {message.text}
                     </div>
                 </div>
-                <IconButton className="message__del" onClick={handleClick}>
+                <IconButton aria-label="message_del" className="message__del" onClick={handleClick}>
                     <DeleteForeverIcon />
                 </IconButton>
             </div>

@@ -3,10 +3,10 @@
 
 $brightColor: #c47816;
 $brightColorDark: #9c6010;
-$mainColorLight: #bcbcc5;
+$mainColorLight: #dfdfdf;
 $mainColorDark: #092b5e;
 $mainColorMedium: #0f4d9e;
-$mainColorDarkest: #092247;
+$mainColorDarkest: #041631;
 $botColor: rgb(72, 142, 247);
 $mainFont: Roboto, sans-serif;
 
@@ -72,6 +72,7 @@ a {
                 border: 2px solid $mainColorMedium;
                 color: $mainColorLight;
                 border-radius: 20px;
+                
             }
             .chat__add {
                 margin: 20px;
@@ -104,7 +105,7 @@ a {
                 display: flex;
                 justify-content: space-between;
                 padding: 8px;
-                background-color: rgba($mainColorLight, 0.8);
+                background-color: rgba($mainColorLight, 0.7);
                 border-radius: 10px;
                 margin-left: 12px;
                 position: relative;
@@ -115,7 +116,7 @@ a {
                     position: absolute; 
                     right: 100%; 
                     top: 12px;
-                    border-top: 12px solid rgba($mainColorLight, 0.8);
+                    border-top: 12px solid rgba($mainColorLight, 0.7);
                     border-left: 18px solid transparent;
                     border-bottom: 12px solid transparent;
                 }

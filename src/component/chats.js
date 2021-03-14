@@ -11,14 +11,14 @@ export default function Chats() {
     return (
         <>
             <ChatList chatId={params.chatId} />
-            <div className="app__field">
+            <main className="app__field">
                 {params.chatId ?
                     <Messages chatId={params.chatId} /> :
                     chatsError ?
                         <Error errorCode={chatsError}></Error> :
                         <div className="app__text">Please select Chat or create New</div>
                 }
-            </div>
+            </main>
         </>
     );
 }

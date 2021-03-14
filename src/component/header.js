@@ -23,6 +23,7 @@ export default function Header() {
         <header className="header">
             <nav className='header__menu'>
                 <IconButton
+                    aria-label="menu"
                     aria-controls="simple-menu"
                     aria-haspopup="true"
                     onClick={handleClick}

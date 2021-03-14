@@ -46,9 +46,9 @@ export default function ChatList({ chatId }) {
 
     return (
         <div className='chat__list'>
-            <span className="chatlist__title">
+            <h4 className="chatlist__title">
                 CHATS
-            </span>
+            </h4>
             {getComponent()}
             <Divider />
             <ChatAddDialog onAddChat={handleAddChat} />
