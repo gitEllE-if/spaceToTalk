@@ -11,8 +11,8 @@ export default function MessageField({ chatId, messages }) {
         }
     }, [messages]);
 
-    const renderMessage = useCallback((message) => {
-        return (<MessageItem chatId={chatId} message={message} />);
+    const renderMessage = useCallback((message, idx) => {
+        return (<MessageItem chatId={chatId} message={message} key={idx} />);
     }, [chatId, messages]);
 
     return (

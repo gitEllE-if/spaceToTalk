@@ -1,9 +1,9 @@
+const webpack = require('webpack');
 const { resolve } = require('path');
 const HTMLwebpackPlugin = require('html-webpack-plugin');
 const MiniCSSextractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = {
     entry: ["@babel/polyfill", resolve(__dirname, 'src', 'index.js')],
@@ -13,6 +13,7 @@ module.exports = {
             return process.env.NODE_ENV === 'development' ? 'app.js' : 'app.[contenthash].js';
         }
     },
+    devtool: 'eval-source-map',
     devServer: {
         historyApiFallback: true,
     },
@@ -29,7 +30,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.ogg|mp3|wav|mpe?g|png|jpe?g|gif$/i,
+                test: /\.ogg|mp3|wav|mpe?g|png|jpe?g|gif|svg$/i,
                 loader: 'file-loader',
                 options: {
                     name() {
@@ -47,9 +48,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"production"'
-        }),
         new webpack.ProvidePlugin({
             "React": "react"
         }),
@@ -62,7 +60,6 @@ module.exports = {
             }
         }),
         new CleanWebpackPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
         // new BundleAnalyzerPlugin()
     ]
 }

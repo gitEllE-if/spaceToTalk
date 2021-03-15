@@ -15,8 +15,8 @@ export default function ChatAddDialog({ onAddChat }) {
     const [chatName, setChatName] = useState('');
     const [chatType, setChatType] = useState(CHAT_TYPE[0]);
 
-    const renderChatTypes = useCallback((type) =>
-        <MenuItem value={type}>
+    const renderChatTypes = useCallback((type, idx) =>
+        <MenuItem value={type} key={idx}>
             {type}
         </MenuItem>
         , []);

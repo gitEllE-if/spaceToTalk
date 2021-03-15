@@ -13,9 +13,9 @@ export default function ChatSelect() {
         dispatch(addChat({ name: chatName, type: chatType }));
     }, [dispatch]);
 
-    const renderChat = useCallback((chat) => {
+    const renderChat = useCallback((chat, idx) => {
         return (
-            <li>
+            <li key={idx}>
                 <Link to={`/chats/${chat.id}`}>
                     {chat.name}
                 </Link>

@@ -6,6 +6,7 @@ import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import PushToggle from './pushToggle';
 
 export default function Header() {
     const profile = useSelector(store => store.profile);
@@ -47,6 +48,7 @@ export default function Header() {
                     SPACE <span> to talk  </span> <StarRoundedIcon />  {profile.name}
                 </Link>
             </div>
+            <PushToggle />
         </header>
     );
 }
