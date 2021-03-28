@@ -2,15 +2,41 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>messenger</title>
-    <base href="/">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="Messenger(front) is a simple training project for getting started with React" />
+    <meta name="theme-color" content="#092b5e" />
+    <title>Chat Space</title>
+    <base href="/" />
+    <link rel="manifest" href="manifest/manifest.json" />
+    <link rel="apple-touch-icon" href="manifest/apple_logo192.png" type="image/png" />
+    <link rel="icon" href="manifest/logo72.png" type="image/png" />
 </head>
 
 <body>
+    <noscript>
+        <p>JavaScript is required to use the page</p>
+    </noscript>
     <div id="root"></div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function (registration) {
+                        console.log('ServiceWorker registration succeeded. Scope is ', registration.scope);
+                    }, function (err) {
+                        console.log('ServiceWorker registration failed with ', err);
+                    })
+                    .catch(function (err) {
+                        console.log(err)
+                    });
+            });
+        } else {
+            console.log('ServiceWorker not supported');
+        }
+    </script>
+    <script defer src="./notifications.js"></script>
 </body>
 
 </html>

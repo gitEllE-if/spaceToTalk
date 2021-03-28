@@ -4,7 +4,7 @@ import Divider from '@material-ui/core/Divider';
 
 export default function Home() {
     return (
-        <div className="app__field">
+        <main className="app__field">
             <div className='data__field'>
                 <div className="home__text">
                     SPACE to talk — a space for friends.<br />
@@ -13,11 +13,11 @@ export default function Home() {
                 Create Your Own Profile! Upload a photo, set your name, add details to your profile and start adding friends!
                 </div>
                 <Divider />
-                <div className="home__link">
+                <nav className="home__link">
                     <Link to='/profile'><StarRoundedIcon /> My profile</Link>
                     <Link to='/chats'><StarRoundedIcon /> Chats</Link>
-                </div>
+                </nav>
             </div>
-        </div >
+        </main >
     );
 }

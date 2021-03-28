@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=production",
+    "build": "webpack --node-env=production --mode=production",
     "dev": "webpack --node-env=development --mode=development",
     "serve": "webpack serve --mode=development"
   },

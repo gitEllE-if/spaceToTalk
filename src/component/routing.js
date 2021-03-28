@@ -7,6 +7,7 @@ import Header from './header';
 import Profile from './profile';
 import Home from './home';
 import Chats from "./chats";
+import InstallPopup from "./installPopup";
 
 export default function Routing() {
     const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export default function Routing() {
                     </Switch>
                 </div>
             </div >
+            <InstallPopup />
         </Router>
     );
 }

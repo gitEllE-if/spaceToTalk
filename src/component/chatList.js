@@ -24,7 +24,7 @@ export default function ChatList({ chatId }) {
 
     const renderChat = useCallback((chat, idx) => {
         return (
-            <Link to={`/chats/${chat.id}`}>
+            <Link to={`/chats/${chat.id}`} key={idx}>
                 <ChatItem
                     chat={chat} idx={idx} selected={selectedId === idx}
                     icon={<ChatRoundedIcon />}
@@ -36,7 +36,7 @@ export default function ChatList({ chatId }) {
     const getComponent = useCallback(() => {
         switch (chatsRequest) {
             case STATUS.SUCCESS:
-                return <List dense='true'>{chats.map(renderChat)}</List>
+                return <List dense={true}>{chats.map(renderChat)}</List>
             case STATUS.REQUEST:
                 return <CircularProgress />;
             case STATUS.FAILURE:
@@ -46,9 +46,9 @@ export default function ChatList({ chatId }) {
 
     return (
         <div className='chat__list'>
-            <span className="chatlist__title">
+            <h4 className="chatlist__title">
                 CHATS
-            </span>
+            </h4>
             {getComponent()}
             <Divider />
             <ChatAddDialog onAddChat={handleAddChat} />

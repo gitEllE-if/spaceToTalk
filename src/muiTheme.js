@@ -1,13 +1,13 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const COLOR = {
-    light: '#bcbcc5',
-    dark: '#092b5e',
+    light: '#dfdfdf',
+    lightDark: '#e2bb71',
     medium: '#0f4d9e',
     bright: '#c47816',
     brightDark: '#9c6010',
-    darkest: '#092247',
-    mainDark: '#c9770c'
+    dark: '#092b5e',
+    darkest: '#041631'
 };
 
 export const MUI_THEME = createMuiTheme({
@@ -38,7 +38,7 @@ export const MUI_THEME = createMuiTheme({
         },
         MuiListItemText: {
             secondary: {
-                color: COLOR.darkest
+                color: COLOR.lightDark
             }
         },
         MuiListItemIcon: {

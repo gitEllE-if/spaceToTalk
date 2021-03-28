@@ -32,7 +32,7 @@ export default function MessageSend({ onAddMessage }) {
                 type="text" name="message__input" placeholder="print message"
                 value={inValue} onChange={handleChange}>
             </input>
-            <button type="submit"><SendRoundedIcon /></button>
+            <button aria-label="submit" type="submit"><SendRoundedIcon /></button>
         </form>
     );
 }

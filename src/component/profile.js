@@ -9,20 +9,19 @@ export default function Profile() {
     const dispatch = useDispatch();
 
     const handleChangeProfile = useCallback((newProfile) => {
-        console.log(newProfile);
         dispatch(changeName(newProfile.name));
         dispatch(changeAge(newProfile.age));
         dispatch(changeCity(newProfile.city));
     }, [dispatch]);
 
-    const renderUserParam = useCallback((param) =>
-        <li>
+    const renderUserParam = useCallback((param, idx) =>
+        <li key={idx}>
             {param}: {profile[param]} <br /><br />
         </li>
         , [profile]);
 
     return (
-        <div className="app__field">
+        <main className="app__field">
             <div className="data__field">
                 <div className='profile'>
                     <Avatar className='profile__avatar'></Avatar>
@@ -32,6 +31,6 @@ export default function Profile() {
                 </div>
                 <ProfileChangeDialog onChangeProfile={handleChangeProfile} />
             </div>
-        </div >
+        </main >
     );
 }
