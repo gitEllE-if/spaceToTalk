@@ -6,3 +6,12 @@ export const CHAT_TYPE = [
     'personal chat',
     'private chat'
 ];
+
+export const API = 'https://raw.githubusercontent.com/gitEllE-if/React_lessons/main/api/';
+
+export const STATUS = {
+    IDLE: 0,
+    REQUEST: 1,
+    SUCCESS: 2,
+    FAILURE: 3
+}

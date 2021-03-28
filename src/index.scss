@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+$brightColor: #c47816;
+$brightColorDark: #9c6010;
 $mainColorLight: #bcbcc5;
-$mainColor: #a3702e;
 $mainColorDark: #092b5e;
 $mainColorMedium: #0f4d9e;
 $mainColorDarkest: #092247;
@@ -94,17 +95,15 @@ a {
             margin-bottom: 10px;
             margin-right: 10px;
             display: flex;
-            justify-content: space-between;
             .message__avatar {
                 color: $mainColorDark;
-                background-color: $mainColor;
+                background-color: $brightColor;
                 margin-right: 10px;
             }
             .message__body {
                 display: flex;
                 justify-content: space-between;
                 padding: 8px;
-                width: 100%;
                 background-color: rgba($mainColorLight, 0.8);
                 border-radius: 10px;
                 margin-left: 12px;
@@ -148,7 +147,7 @@ a {
         button {
             width: 100px;
             border: none;
-            background-color: $mainColor;
+            background-color: $brightColor;
             border-radius: 0 20px 20px 0;
             color: $mainColorLight;
             font-size: 20px;
@@ -164,7 +163,7 @@ a {
 }
 
 .error {
-    border: 2px solid $mainColor !important;
+    border: 2px solid $brightColor !important;
 }
 
 .norm {
@@ -216,8 +215,53 @@ a {
             font-size: 18px;
             font-weight: 700;
             &:hover{
-                color: $mainColor;
+                color: $brightColor;
             }
         }
     }
 }
+
+.error__field{
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    .error__img{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        .img__top {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+        }
+        .error__code{
+            position: absolute;
+            top: 300px;
+            left: 140px;
+            color: $mainColorLight;
+            span {
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+#blink {
+    animation: blink1 7s linear infinite;
+  }
+  @keyframes blink1 {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  #increase {
+    animation: increase1 7s linear infinite;
+  }
+  
+  @keyframes increase1 {
+    0% { transform:scale(1); }
+    50% { transform:scale(1.1); }
+    100% { transform:scale(1); }
+  }

@@ -20,8 +20,8 @@ export default function Header() {
     }, []);
 
     return (
-        <div className="header">
-            <div className='header__menu'>
+        <header className="header">
+            <nav className='header__menu'>
                 <IconButton
                     aria-controls="simple-menu"
                     aria-haspopup="true"
@@ -40,12 +40,12 @@ export default function Header() {
                     <MenuItem onClick={handleClose}><Link to="/chats">Chats</Link></MenuItem>
                     <MenuItem onClick={handleClose}><Link to="/profile">Profile</Link></MenuItem>
                 </Menu>
-            </div>
+            </nav>
             <div className='header__title'>
                 <Link to="/">
                     SPACE <span> to talk  </span> <StarRoundedIcon />  {profile.name}
                 </Link>
             </div>
-        </div>
+        </header>
     );
 }

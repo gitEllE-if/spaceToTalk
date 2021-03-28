@@ -1,9 +1,13 @@
-import { ADD_MESSAGE, ADD_MESSAGES_ARR, DEL_MESSAGE, DEL_MESSAGES_ARR } from './actions'
+import { STATUS } from '../../const';
+import {
+    ADD_MESSAGE, ADD_MESSAGES_ARR, DEL_MESSAGE, DEL_MESSAGES_ARR,
+    LOAD_MESSAGES_REQUEST, LOAD_MESSAGES_REQUEST_FAILURE, LOAD_MESSAGES_REQUEST_SUCCESS
+} from './actions'
 
 const initialState = {
-    messageArr: {
-        'id1': [{ id: 'id1', text: 'Привет', author: 'elle' }]
-    }
+    messageArr: {},
+    request: STATUS.IDLE,
+    error: null
 };
 
 const messagesReducer = (state = initialState, action) => {
@@ -30,6 +34,12 @@ const messagesReducer = (state = initialState, action) => {
             return {
                 ...state, messageArr: { ...newList }
             };
+        case LOAD_MESSAGES_REQUEST:
+            return { ...state, request: STATUS.REQUEST, error: null };
+        case LOAD_MESSAGES_REQUEST_SUCCESS:
+            return { ...state, messageArr: action.payload, request: STATUS.SUCCESS, error: null };
+        case LOAD_MESSAGES_REQUEST_FAILURE:
+            return { ...state, request: STATUS.FAILURE, error: action.payload };
         default:
             return state;
     }
