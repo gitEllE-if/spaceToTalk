@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+$brightColor: #c47816;
+$brightColorDark: #9c6010;
+$mainColorLight: #dfdfdf;
+$mainColorDark: #092b5e;
+$mainColorMedium: #0f4d9e;
+$mainColorDarkest: #041631;
+$botColor: rgb(72, 142, 247);
+$mainFont: Roboto, sans-serif;
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $mainFont;
+}
+
+a {
+    text-decoration: none;
+    color: $mainColorMedium;
+}
+
+.layout {
+    height: 100vh;
+    background-color: $mainColorDark;
+    display: flex;
+    flex-direction: column;
+    .header {
+        padding: 0 10px;
+        height: 50px;
+        background: linear-gradient(to right, $mainColorDark, $mainColorMedium, $mainColorDark);
+        border-bottom: 2px solid $mainColorMedium;
+        display: flex;
+        align-items: center;
+        color: $mainColorLight;
+        justify-content: space-between;
+        .header__title {
+            a {
+                color: $mainColorLight;
+            }
+            span {
+                font-weight: 700;
+            }
+        }
+        .push {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .push__image {
+                height: 50%;
+            }
+        }   
+    }
+    .center {
+        height: 100%;
+        display: flex;
+        .chat__list {
+            height: 90vh;
+            overflow-y: auto;
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            @media (max-width: 640px){
+                display: none;
+            }
+            .chatlist__title {
+                margin: 20px 10px;
+                text-align: center;
+                padding: 8px;
+                border: 2px solid $mainColorMedium;
+                color: $mainColorLight;
+                border-radius: 20px;
+            }
+        }
+    }
+}
+
+.chat__add {
+    margin: 20px;
+}
+
+.chat__select {
+    display: none;
+    ul {
+        color: $mainColorLight;
+        li{
+            margin-top: 10px;
+            a {
+                color: $mainColorLight;
+            }
+        }
+    }
+    @media (max-width: 640px){
+        display: block;
+    }
+}
+
+.app__field {
+    background: radial-gradient(circle, rgba($mainColorMedium,0.4108018207282913) 0%, rgba($mainColorDark,1) 100%),
+    url('./img/space.jpg') center center /50% repeat;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .message__field {
+        height: 80vh;
+        overflow-y: auto;
+        .message__item{
+            margin-bottom: 10px;
+            margin-right: 10px;
+            display: flex;
+            .message__avatar {
+                color: $mainColorDark;
+                background-color: $brightColor;
+                margin-right: 10px;
+            }
+            .message__body {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px;
+                background-color: rgba($mainColorLight, 0.7);
+                border-radius: 10px;
+                margin-left: 12px;
+                position: relative;
+                &::before {
+                    content: "";
+                    width: 0; 
+                    height: 0;
+                    position: absolute; 
+                    right: 100%; 
+                    top: 12px;
+                    border-top: 12px solid rgba($mainColorLight, 0.7);
+                    border-left: 18px solid transparent;
+                    border-bottom: 12px solid transparent;
+                }
+                .message__author {
+                    color: $mainColorMedium;
+                    margin-bottom: 4px;
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+                .message__text {
+                    color: $mainColorDark;
+                }
+            }
+        }
+    }
+    .sendMess__form {
+        display: flex;
+        height: 36px;
+        input {
+            width: 100%;
+            border: 2px solid $mainColorLight;
+            border-radius: 20px 0 0 20px;
+            margin-left: 2px;
+            margin-right: 2px;
+            padding: 0 10px;
+            outline: none;
+            background-color: rgba($mainColorLight, 0.8);
+        }
+        button {
+            width: 100px;
+            border: none;
+            background-color: $brightColor;
+            border-radius: 0 20px 20px 0;
+            color: $mainColorLight;
+            font-size: 20px;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+}
+
+.app__text{
+    color: $mainColorLight;
+    font-size: 16px;
+}
+
+.error {
+    border: 2px solid $brightColor !important;
+}
+
+.norm {
+    border: 2px solid $mainColorLight;
+}
+
+.bot {
+    font-size: 18px !important;
+    background-color: rgba($botColor, 0.8) !important;
+    color: $mainColorLight !important;
+}
+
+.profile {
+    padding: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    @media (max-width: 600px){
+        flex-direction: column;
+        padding: initial;
+    }
+    .profile__avatar {
+        width: 120px;
+        height: 120px;
+    }
+    .profile__list {
+        color: $mainColorDarkest;
+        list-style: none;
+        font-size: 18px;
+        text-align: left;
+    }
+}
+
+.data__field {
+    background-color: rgba($mainColorLight, 0.6);
+    width: 70%;
+    margin: auto auto;
+    padding: 30px;
+    color: $mainColorDarkest;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .home__text{
+        margin-bottom: 20px;
+    }
+    .home__link {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-evenly;
+        @media (max-width: 450px){
+            flex-direction: column;
+        }
+        a {
+            font-size: 18px;
+            font-weight: 700;
+            &:hover{
+                color: $brightColor;
+            }
+            &:last-child {
+                @media (max-width: 450px){
+                    margin-top: 20px;
+                    margin-right: 30px;
+                }
+            }
+            @media (max-width: 450px){
+                margin-right: 30px;
+            }
+        }
+    }
+}
+
+.error__field{
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    .error__img{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        .img__bottom {
+            width: 100%;
+        }
+        .img__top {
+            width: 80%;
+            position: absolute;
+            top: 20px;
+            left: 10%;
+        }
+        .error__code{
+            position: absolute;
+            top: 300px;
+            left: 42%;
+            color: $mainColorLight;
+            span {
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+#blink {
+    animation: blink1 7s linear infinite;
+}
+@keyframes blink1 {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#increase {
+    animation: increase1 7s linear infinite;
+}
+  
+@keyframes increase1 {
+    0% { transform:scale(1); }
+    50% { transform:scale(1.1); }
+    100% { transform:scale(1); }
+}
+
+.installPopup__container {
+    position: fixed;
+    width: 100%;
+    bottom: 20px;
+    z-index: 1000;
+    .installPopup {
+        padding: 10px;
+        margin: 0 auto;
+        min-height: 50px;
+        position: relative;
+        width: 90%;
+        background: $mainColorLight;
+        text-align: center;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+       .installPopup__close {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        color: $mainColorMedium !important;
+        }
+       &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: 20px solid transparent;
+        border-top-color: $mainColorLight;
+        border-bottom: 0;
+        margin-left: -20px;
+        margin-bottom: -19px;
+    }
+}
