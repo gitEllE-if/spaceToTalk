@@ -1,4 +1,10 @@
-# React_lessons
+# Messenger on React
+
+Messenger (front) is a simple training project for getting started with React
+
+
+[demo](https://spacetotalk.herokuapp.com/)
+
 
 ## Available Scripts
 
