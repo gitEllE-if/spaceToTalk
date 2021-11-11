@@ -4,6 +4,7 @@ const HTMLwebpackPlugin = require('html-webpack-plugin');
 const MiniCSSextractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: ["@babel/polyfill", resolve(__dirname, 'src', 'index.js')],
@@ -43,7 +44,20 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
-                use: [MiniCSSextractPlugin.loader, 'css-loader?url=false', 'sass-loader']
+                use: [
+                    {
+                        loader: MiniCSSextractPlugin.loader,
+                        options: {
+                            publicPath: ''
+                        }
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "sass-loader"
+                    }
+                ]
             },
         ]
     },
@@ -52,7 +66,7 @@ module.exports = {
             "React": "react"
         }),
         new HTMLwebpackPlugin({
-            template: resolve(__dirname, 'index.html')
+            template: resolve(__dirname, 'public', 'index.html')
         }),
         new MiniCSSextractPlugin({
             filename: () => {
@@ -60,6 +74,16 @@ module.exports = {
             }
         }),
         new CleanWebpackPlugin(),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: resolve(__dirname, "public"),
+                    globOptions: {
+                        ignore: ["**/*.html"]
+                    }
+                }
+            ],
+        })
         // new BundleAnalyzerPlugin()
     ]
 }

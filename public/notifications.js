@@ -99,11 +99,11 @@ function notifications(window) {
         pushElement.checked = status;
         if (status) {
             pushElement.classList.add('active');
-            pushImgElement.src = './src/img/push_on.svg';
+            pushImgElement.src = 'push_on.svg';
         }
         else {
             pushElement.classList.remove('active');
-            pushImgElement.src = './src/img/push_off.svg';
+            pushImgElement.src = 'push_off.svg';
         }
     }
 
